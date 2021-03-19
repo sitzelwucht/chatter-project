@@ -1,0 +1,22 @@
+
+.login-signup {
+  background: rgb(152, 197, 193);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-link {
+  background: rgb(233, 201, 152);
+  color: black;
+}
+
+.nav-link.active {
+  background: rgb(231, 122, 19)!important;
+ 
+}
+
+.round {
+  border-radius: 25px!important;
+}
