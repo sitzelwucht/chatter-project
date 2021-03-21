@@ -6,11 +6,11 @@ import { useConversations } from '../contexts/ConversationsProvider'
 export default function OpenConversation() {
 
     const [text, setText] = useState('')
-    const { sendMessage, selectedConv } = useConversations()
+    const { sendMsg, selectedConv } = useConversations()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        sendMessage(
+        sendMsg(
             selectedConv.recipients.map(recipient => recipient.id),
             text)
         setText('')
@@ -18,12 +18,29 @@ export default function OpenConversation() {
 
     return (
 
-
         <div className="d-flex flex-column flex-grow-1">
-        <div className="flex-grow-1 overflow-auto">
+            <div className="flex-grow-1 overflow-auto">
+                <div className="d-flex flex-column align-items-start justify-content-end px-5 py-5 ">
+                { selectedConv.messages.map((msg, i) => {
+                    return (
+                        <div 
+                        key={i} 
+                        className={`my-1 d-flex flex-column ${msg.fromMe ? 'align-self-end' : ''}`}>
+                        
+                            <div 
+                                className={`rounded px-2 py-1 ${msg.fromMe ? 'bg-dark text-white' : 'bg-light text-dark'}`}>{msg.text}
+                            </div>
+                            
+                            <div 
+                                className={`text-muted small ${msg.fromMe ? 'text-right' : ''}`}>{msg.fromMe ? 'you' : msg.senderName}
+                            </div>
+                        </div>
+                    )
+                })}
 
-        </div>
-            <Form>
+                </div>
+            </div>
+            <Form onSubmit={handleSubmit} className="m-5">
                 <Form.Group>
                     <InputGroup>
                     <Form.Control 

@@ -13,6 +13,7 @@ export default function Conversations() {
         {
             conversations.map((item, i) => (
              <ListGroup.Item className="dark-bg"
+             variant="light"
              key={i}
              action
              active={item.selected}

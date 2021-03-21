@@ -8,13 +8,13 @@
 }
 
 .nav-link {
-  background: rgb(233, 201, 152);
+  background: rgba(167, 216, 214, 0.6);
   color: black;
 }
 
 .nav-link.active {
-  background: rgb(231, 122, 19)!important;
- 
+  background: rgb(42, 197, 202)!important;
+ color: black!important;
 }
 .list-group-item {
   color: rgb(182, 182, 182);
@@ -23,5 +23,9 @@
   border-radius: 25px!important;
 }
 .dark-bg {
-  background: rgb(20,20,20)!important;
+  background: rgba(20,20,20, .3)!important;
+}
+
+.gradient {
+  background: radial-gradient(#415358, #111113)!important;
 }
