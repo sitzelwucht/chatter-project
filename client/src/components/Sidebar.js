@@ -25,9 +25,9 @@ export default function Sidebar({id}) {
 
     return (
 
-        <div className="d-flex flex-column">
+        <div className="d-flex flex-column dark-bg m-5">
           <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
-              <Nav className="justify-content-center" variant="pills" defaultActiveKey={CONVERSATIONS_KEY} onSelect={setActiveKey}>
+              <Nav fill className="justify-content-center" variant="pills" defaultActiveKey={CONVERSATIONS_KEY} onSelect={setActiveKey}>
                   <Nav.Item>
                       <Nav.Link eventKey={CONVERSATIONS_KEY}>Conversations</Nav.Link>
                   </Nav.Item>
@@ -35,7 +35,7 @@ export default function Sidebar({id}) {
                       <Nav.Link eventKey={CONTACTS_KEY}>Contacts</Nav.Link>
                   </Nav.Item>
               </Nav>
-              <Tab.Content className="border-right overflow-auto flex-grow-1">
+              <Tab.Content className="border-right overflow-auto flex-grow-1 ">
                 <Tab.Pane eventKey={CONVERSATIONS_KEY}>
                   <Conversations />
                 </Tab.Pane>

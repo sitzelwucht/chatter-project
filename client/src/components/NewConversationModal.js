@@ -9,11 +9,11 @@ export default function NewConversationModal(props) {
     
     const [selectedIds, setSelected] = useState([])
     const { contacts } = useContacts()
-    const { conversations } = useConversations()
+    const { createConversation } = useConversations()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        createConversation(selectedIds)
         props.closeModal()
     }
 
@@ -25,7 +25,6 @@ export default function NewConversationModal(props) {
 
         })
     }
-
 
 
 

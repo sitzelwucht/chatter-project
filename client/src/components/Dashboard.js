@@ -1,20 +1,18 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import { ContactsProvider } from '../contexts/ContactsProvider'
-import { ConversationsProvider } from '../contexts/ConversationsProvider'
+import { useConversations } from '../contexts/ConversationsProvider'
+import OpenConversation from './OpenConversation'
 
 export default function Dashboard({id}) {
 
+    const { selectedConv } = useConversations()
     
     return (
-        <ContactsProvider>
-        <ConversationsProvider>
             <div className="d-flex" style={{height: '100vh'}}>
 
                 <Sidebar id={id}/>
+                { selectedConv && <OpenConversation /> }
             </div>
-        </ConversationsProvider>
-        </ContactsProvider>
-       
+
     )
 }

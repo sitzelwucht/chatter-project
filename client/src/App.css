@@ -16,7 +16,12 @@
   background: rgb(231, 122, 19)!important;
  
 }
-
+.list-group-item {
+  color: rgb(182, 182, 182);
+}
 .round {
   border-radius: 25px!important;
+}
+.dark-bg {
+  background: rgb(20,20,20)!important;
 }

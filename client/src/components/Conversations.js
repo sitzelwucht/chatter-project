@@ -1,9 +1,26 @@
 import React from 'react'
+import { ListGroup } from 'react-bootstrap'
+import { useConversations } from '../contexts/ConversationsProvider'
+
+
 
 export default function Conversations() {
+
+    const { conversations, selectConvIndex } = useConversations()
+
     return (
-        <div>
-            convos
-        </div>
+        <ListGroup variant="flush" >
+        {
+            conversations.map((item, i) => (
+             <ListGroup.Item className="dark-bg"
+             key={i}
+             action
+             active={item.selected}
+             onClick={() => {selectConvIndex(i)}}>
+              {item.recipients.map(recipient => recipient.name).join(', ')}
+              </ListGroup.Item>
+            ))
+        }
+        </ListGroup>
     )
 }

@@ -10,7 +10,7 @@ export default function Contacts() {
         <ListGroup variant="flush">
             {
                 contacts.map((item, i) => {
-                  return  <ListGroup.Item key={i}>{item.name}</ListGroup.Item>
+                  return  <ListGroup.Item key={i} className="dark-bg">{item.name}</ListGroup.Item>
                 })
             }
         </ListGroup>
