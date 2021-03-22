@@ -1,7 +1,8 @@
 
 .login-signup {
-  background: rgb(152, 197, 193);
+  background: radial-gradient(#415358, #28282c)!important;
   height: 100vh;
+  width: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
