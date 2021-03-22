@@ -28,9 +28,10 @@ export const useConversations = () => {
 export const ConversationsProvider = ({children, id}) => {
 
     const [conversations, setConversations] = useLocalStorage('conversations', [])
+    const [selectedConvIndex, setSelectedConvIndex] = useState(0)
     const { contacts } = useContacts()
     const socket = useSocket()
-    const [selectedConvIndex, setSelectedConvIndex] = useState(0)
+    
 
     const createConversation = (recipients) => {
         setConversations(prevConversations => {
@@ -62,7 +63,7 @@ export const ConversationsProvider = ({children, id}) => {
 
 
     useEffect(() => {
-        if (socket === null) return
+        if (socket == null) return
         socket.on('receive-message', addMsgToConversation)
 
         return () => socket.off('receive-message')

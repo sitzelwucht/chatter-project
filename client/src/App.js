@@ -2,9 +2,9 @@
 import './App.css';
 import Dashboard from './components/Dashboard';
 import Login from  './components/Login'
+import useLocalStorage from './hooks/useLocalStorage';
 import { ConversationsProvider } from './contexts/ConversationsProvider';
 import { ContactsProvider } from './contexts/ContactsProvider';
-import useLocalStorage from './hooks/useLocalStorage';
 import { SocketProvider } from './contexts/SocketProvider';
 
 function App() {
