@@ -1,6 +1,7 @@
-import React, { useContext, createContext, useState } from 'react'
+import React, { useContext, createContext, useState, useEffect, useCallback } from 'react'
 import useLocalStorage from '../hooks/useLocalStorage'
 import { useContacts } from './ContactsProvider'
+import { useSocket } from './SocketProvider'
 
 const ConversationsContext = createContext()
 
@@ -28,6 +29,7 @@ export const ConversationsProvider = ({children, id}) => {
 
     const [conversations, setConversations] = useLocalStorage('conversations', [])
     const { contacts } = useContacts()
+    const socket = useSocket()
     const [selectedConvIndex, setSelectedConvIndex] = useState(0)
 
     const createConversation = (recipients) => {
@@ -36,7 +38,7 @@ export const ConversationsProvider = ({children, id}) => {
         })
     }
 
-    const addMsgToConversation = ({ recipients, text, sender }) => {
+    const addMsgToConversation = useCallback(({ recipients, text, sender }) => {
         setConversations(prevConversations => {
             let changesMade = false
             const newMsg = { sender, text }
@@ -49,7 +51,6 @@ export const ConversationsProvider = ({children, id}) => {
                 return convo
             })
 
-
             if (changesMade) {
                 return newConvos
             }
@@ -57,9 +58,18 @@ export const ConversationsProvider = ({children, id}) => {
                 return [...prevConversations, { recipients, messages: [newMsg] }]
             }
         })
-    }
+    }, [setConversations])
+
+
+    useEffect(() => {
+        if (socket === null) return
+        socket.on('receive-message', addMsgToConversation)
+
+        return () => socket.off('receive-message')
+    }, [socket, addMsgToConversation])
 
     const sendMsg = (recipients, text) => {
+        socket.emit('send-message', { recipients, text })
         addMsgToConversation({ recipients, text, sender: id })
     }
 
@@ -81,8 +91,8 @@ export const ConversationsProvider = ({children, id}) => {
             return {...msg, senderName: name, fromMe}
         })
         // set selected to true if index matches selected index
-        const selected = i === selectedConvIndex
-        return {...conversations, messages, recipients, selected}
+        const isSelected = i === selectedConvIndex
+        return {...conversations, messages, recipients, isSelected}
     })
 
     

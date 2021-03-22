@@ -25,7 +25,7 @@ export default function Sidebar({id}) {
 
     return (
 
-        <div className="d-flex flex-column dark-bg m-5">
+        <div className="d-flex flex-column dark-bg mb-5 mt-5 ml-5">
           <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
               <Nav fill className="justify-content-center" variant="pills" defaultActiveKey={CONVERSATIONS_KEY} onSelect={setActiveKey}>
                   <Nav.Item>

@@ -16,7 +16,7 @@ export default function Conversations() {
              variant="light"
              key={i}
              action
-             active={item.selected}
+             active={item.isSelected}
              onClick={() => {selectConvIndex(i)}}>
               {item.recipients.map(recipient => recipient.name).join(', ')}
               </ListGroup.Item>
